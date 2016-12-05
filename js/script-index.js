@@ -34,12 +34,28 @@ function renderHighlightedRecipes(recipesArray) {
 */
 function renderRecipe(recipe) {
 	console.log('Voy a pintar la receta: ', recipe);
+	var aItem = $('<a class="item-recipe" href="#"></a>');
+	var span1 = $('<span class="attribution"> </span>');
+	var span2 = $('<span class="title-recipe">' + recipe.title + '</span>');
+	var span3 = $('<span class="metadata-recipe"></span');
+	var span4 = $('<span class="author-recipe">' + recipe.source.name + '</span>');
+	var span5 = $('<span class="bookmarks-recipe"></span');
+	var span6 = $('<span class="icon-bookmark"></span>');
+	var imgItem = $(' <img/>').attr('src', recipe.source.url);
+
+	('.list-recipes').html(aItem);
+	aItem.html(span1);
+	span1.html(span1);
+	span1.html(span3);
+	span3.html(span4);
+	span3.html(span5);
+	span5.html(span6);
+	aItem.html(imgItem);
+
 }
 
 
-
-/*
-* Función que se encarga de pintar todas las actividades
+/** Función que se encarga de pintar todas las actividades
 */
 function renderActivities(activitiesArray) {
 	console.log('Activities: ', activitiesArray);
