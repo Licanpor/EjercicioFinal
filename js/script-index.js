@@ -1,7 +1,9 @@
 $(document).ready( function(){
 	$('.js-back').hide();
 	$('.js-menu').show();
-printNews();
+	printNews();
+	
+
 	function printNews(){
 		$('.callout-news p').html('NUEVAS RECETAS');
 
@@ -18,11 +20,14 @@ printNews();
 */
 function renderHighlightedRecipes(recipesArray) {
 	console.log('Recipes: ', recipesArray);
-		$(recipesArray).each(function(index, recipe){
-		if(recipesArray[index].hasOwnProperty('highlighted') && recipesArray[index]['highlighted'] == true) {
-			renderRecipe(index, recipe);
-
+	_.each(recipesArray, function(recipe){
+		
+		if (recipe){	
+			if(recipe.highlighted) {
+				renderRecipe(recipe);
+			}
 		}
+		
 	});
 }
 
@@ -33,31 +38,48 @@ function renderHighlightedRecipes(recipesArray) {
 * archivo "templates/templates-recipe.html"
 */
 function renderRecipe(recipe) {
-	if (!recipe) return;
 	console.log('Voy a pintar la receta: ', recipe);
 
-	var list = $('.list-recipes');
-	var aItem = $('<a class="item-recipe" href="#"></a>');
-	var span1 = $('<span class="attribution"></span>');
-	var span2 = $('<span class="title-recipe"></span>').text(recipe.title);
+	var aItem = $('<a></a>');
+	aItem.addClass('item-recipe');
 
-	var span3 = $('<span class="metadata-recipe"></span');
-	var span4 = $('<span class="author-recipe"></span>')
-	span4.text(recipe.source.name);
+	var sAttribution = $('<span></span>');
+	sAttribution.addClass('attribution');
 
-	var span5 = $('<span class="bookmarks-recipe"></span').attr(recipe.cooktime);
-	var span6 = $('<span class="icon-bookmark"></span>');
-	var imgItem = $('<img/>')/*.attr('src', source.url);*/
-	
-	list.prepend(aItem);
-	aItem.prepend(span1);
-	aItem.append(imgItem);
-	span1.prepend(span2);
-	span1.append(span3);
-	span3.prepend(span4);
-	span3.append(span5);
-	span5.prepend(span6);
-	
+	var sTitle = $('<span></span>');
+	sTitle.addClass('title-recipe');
+	sTitle.text(recipe.title);
+
+	var sMetadata = $('<span></span>');
+	sMetadata.addClass('metadata-recipe');
+
+	var sAuthor = $('<span></span>');
+	sAuthor.addClass('author-recipe');
+	sAuthor.text(recipe.name);
+
+	var sBookmarks = $('<span></span>');
+	sBookmarks.addClass('bookmarks-recipe');
+
+	var sIcon = $('<span></span>');
+	sIcon.addClass('icon-bookmark');
+
+	sBookmarks.append(sIcon);
+
+	sMetadata.append(sBookmarks);
+	sMetadata.append(sAuthor);
+
+	sAttribution.append(sTitle);
+	sAttribution.append(sMetadata);
+
+	aItem.append(sAttribution);
+
+	var url = 'img/recipes/320x350/' + recipe.name + '.jpg';
+	var img = $('<img />');
+	img.attr('src', url);
+
+	aItem.append(img);
+
+	$('.list-recipes').append(aItem);
 
 }
 
