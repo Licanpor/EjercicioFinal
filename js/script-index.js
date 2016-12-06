@@ -47,7 +47,7 @@ function renderRecipe(recipe) {
 
 	var span5 = $('<span class="bookmarks-recipe"></span').attr(recipe.cooktime);
 	var span6 = $('<span class="icon-bookmark"></span>');
-	var imgItem = $('<img/>')/*.attr('src', recipesArray(source.url));*/
+	var imgItem = $('<img/>')/*.attr('src', source.url);*/
 	
 	list.prepend(aItem);
 	aItem.prepend(span1);
