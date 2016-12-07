@@ -90,17 +90,14 @@ function renderRecipe(recipe) {
 */
 function renderActivities(activities) {
 	console.log('Activities: ', activities);
-	_.each(activities, function(){
-		renderActivity(activities);
-		console.log('actiidad');
-
-		if (activities){	
-			if(activities != 0) {
-				$('.wrapper-message').hide();
-				console.log('escondido');
-			}
-		}	
-	});
+	for ( var i = 0; i < activities.length; i++){
+		
+		if ( activities.length > 0 ){
+			console.log("esta entrando");
+			$(".wrapper-message").hide();
+		}
+		_.each(activities, renderActivity);
+	}
 }
 
 /*
@@ -108,54 +105,27 @@ function renderActivities(activities) {
 * Aqui se tiene que crear el HTML que esta en el 
 * archivo "templates/templates-activity.html"
 */
-function renderActivity(activities) {
+function renderActivity(recipe) {
+	console.log("ENTRE");
+	var template = 
+	'<a href="#" class="item-activity">' +
+		'<span class="attribution">'+
+  			'<span class="avatar">'+
+				'<img src="<%= userAvatar %>" class="image-avatar">' +
+			'</span>'+
+			'<span class="meta">'+
+				'<span class="author"> <%= userName %> </span> made' +
+				'<span class="recipe"><%= recipeName %></span> <%= text %>' +
+				'<span class="location">&mdash;<%= place %></span>' +
+			'</span>' +
+		'</span>' +
+		'<div class="bg-image" style="background-image: url(&quot; <%= image %>&quot;);"></div>' +
+	'</a>' ;
+	var compiled = _.template(template);
+	var compilado = compiled(recipe);
+	var el = $(compilado);
+	$('.list-activities').append(el);
 
-	var aItem_acivity = $('<a></a>');
-	aItem_acivity.attr('href','#');
-	aItem_acivity.addClass('item-activity');
-
-		var sAttribution_activity = $('<span></span>');
-		sAttribution_activity.addClass('attribution');
-
-			var sAvatar_activity = $('<span></span>');
-			sAvatar_activity.addClass('avatar');
-
-				var imgItem_activity = $('<img />');
-				imgItem_activity.addClass('image-avatar');
-				imgItem_activity.attr('src', activities.userAvatar);
-
-			var sMeta_activity = $('<span></span>');
-			sMeta_activity.addClass('meta');
-
-				var sAuthor_activity = $('<span></span>');
-				sAuthor_activity.addClass('author');
-				sAuthor_activity.text(activities.username);
-
-				var sRecipe_activity = $('<span></span>');
-				sRecipe_activity.addClass('recipe');
-				sRecipe_activity.text(activities.recipeName);
-
-				var sLocation_activity = $('<span></span>');
-				sLocation_activity.text('&mdash;' + activities.place);
-
-		var divItem_activities = $('<div></div>');
-		divItem_activities.addClass('bg-image');
-		divItem_activities.css('background-image', 'url(' + activities.image + ')');
-
-	/*	sMeta_activity.append(sAuthor_activity);
-		sMeta_activity.append(sRecipe_activity);
-		sMeta_activity.append(sLocation_activity);
-
-		sAvatar_activity.append(imgItem_activity);
-
-		sAttribution_activity.append(sAvatar_activity);
-		sAttribution_activity.append(sMeta_activity);
-
-		aItem_acivity.append(sAttribution_activity);
-		aItem_acivity.append(divItem_activities);
-
-		$('.list-activities').append(aItem_acivity);
-*/
 }
 
 
