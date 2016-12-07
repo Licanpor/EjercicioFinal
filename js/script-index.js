@@ -10,6 +10,8 @@ $(document).ready( function(){
 	};
 	//La variable "recipesArray" esta declarada en el archivo "data/recipes.js"
 	renderHighlightedRecipes(recipesArray);
+	renderActivities(activities);
+
 
 });
 
@@ -86,8 +88,19 @@ function renderRecipe(recipe) {
 
 /** Función que se encarga de pintar todas las actividades
 */
-function renderActivities(activitiesArray) {
-	console.log('Activities: ', activitiesArray);
+function renderActivities(activities) {
+	console.log('Activities: ', activities);
+	_.each(activities, function(){
+		renderActivity(activities);
+		console.log('HOLA');
+
+		if (activities){	
+			if(activities != 0) {
+				$('.wrapper-message').hide();
+				console.log('YUPI');
+			}
+		}	
+	});
 }
 
 /*
