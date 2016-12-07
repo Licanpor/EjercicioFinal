@@ -92,12 +92,12 @@ function renderActivities(activities) {
 	console.log('Activities: ', activities);
 	_.each(activities, function(){
 		renderActivity(activities);
-		console.log('HOLA');
+		console.log('actiidad');
 
 		if (activities){	
 			if(activities != 0) {
 				$('.wrapper-message').hide();
-				console.log('YUPI');
+				console.log('escondido');
 			}
 		}	
 	});
@@ -108,8 +108,54 @@ function renderActivities(activities) {
 * Aqui se tiene que crear el HTML que esta en el 
 * archivo "templates/templates-activity.html"
 */
-function renderActivity(recipe) {
-	
+function renderActivity(activities) {
+
+	var aItem_acivity = $('<a></a>');
+	aItem_acivity.attr('href','#');
+	aItem_acivity.addClass('item-activity');
+
+		var sAttribution_activity = $('<span></span>');
+		sAttribution_activity.addClass('attribution');
+
+			var sAvatar_activity = $('<span></span>');
+			sAvatar_activity.addClass('avatar');
+
+				var imgItem_activity = $('<img />');
+				imgItem_activity.addClass('image-avatar');
+				imgItem_activity.attr('src', activities.userAvatar);
+
+			var sMeta_activity = $('<span></span>');
+			sMeta_activity.addClass('meta');
+
+				var sAuthor_activity = $('<span></span>');
+				sAuthor_activity.addClass('author');
+				sAuthor_activity.text(activities.username);
+
+				var sRecipe_activity = $('<span></span>');
+				sRecipe_activity.addClass('recipe');
+				sRecipe_activity.text(activities.recipeName);
+
+				var sLocation_activity = $('<span></span>');
+				sLocation_activity.text('&mdash;' + activities.place);
+
+		var divItem_activities = $('<div></div>');
+		divItem_activities.addClass('bg-image');
+		divItem_activities.css('background-image', 'url(' + activities.image + ')');
+
+	/*	sMeta_activity.append(sAuthor_activity);
+		sMeta_activity.append(sRecipe_activity);
+		sMeta_activity.append(sLocation_activity);
+
+		sAvatar_activity.append(imgItem_activity);
+
+		sAttribution_activity.append(sAvatar_activity);
+		sAttribution_activity.append(sMeta_activity);
+
+		aItem_acivity.append(sAttribution_activity);
+		aItem_acivity.append(divItem_activities);
+
+		$('.list-activities').append(aItem_acivity);
+*/
 }
 
 
