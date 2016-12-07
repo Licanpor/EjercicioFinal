@@ -17,6 +17,10 @@ console.log('Este era una gato que estaba cenando cuando se le apago su candil..
 
   });
 
+  $('.js-back').click(function(){
+  	window.location.href = 'index.html';
+  });
+
 
 
  
